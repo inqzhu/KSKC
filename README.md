@@ -6,7 +6,7 @@ use of bank card transaction data, this study investigates the possibility of us
 
 
 Besides transaction data, KSKC is applicable for various clustering scenarios that involves repeated observations.
-The essence of KSKC is to cluster objects according to their *distributions*. For each object, we obtain its empirical cumulative distribution function (ECDF) based on the repeated observations. Then, each object is presented by its ECDF. The KSKC algorithm is thus implemented using those ECDFs. Objects with similar ECDFs will be clustered together.
+The essence of KSKC is to cluster objects according to their ***distributions***. For each object, we obtain its empirical cumulative distribution function (ECDF) based on the repeated observations. Then, each object is presented by its ECDF. The KSKC algorithm is thus implemented using those ECDFs. Objects with similar ECDFs will be clustered together.
 
 More details of KSKC can be found at: https://doi.org/10.1111/rssc.12471
 
@@ -15,9 +15,7 @@ The citation is: `Yingqiu Zhu, Qiong Deng, Danyang Huang, Bingyi Jing, Bo Zhang,
 
 To use KSKC, please import the code `ks_multi.py`. The file `example.py` provides an example.
 ```Python
-    """
-    conduct KSKC clustering
-    """
+    import ks_multi as ksm
     worker = ksm.KSKC()
     # set the column name of objects
     worker.obj_name = 'Merchant_id'
@@ -45,4 +43,20 @@ The structure of the input CSV should be, for example:
 | mer100 | 10 |
 
 Here `obj_name` and `rec_name` are `Merchant_id` and `Transaction`, respectively.
+The output of KSKC (`cluster_result`) is organized as a DataFrame:
+| Merchant_id | cluster_label |
+| ----------- | ----------- | 
+| mer001 | 0 | 
+| mer002 | 1 |
+| ... | ... | 
+| mer100 | 2 |
 
+
+In addition, ``ks_multi.KSKC()`` supports further specifications:
+| Attribute | Description | Default | 
+| ----------- | ----------- | ----------- | 
+| is_corrected | whether to adopt degree correction | False |
+| NUM_THREAD | number of available processors | 4 |
+| is_fast | whether to adopt the fast version of KSKC | True |
+| sample_num | subsample size for the fast version | 1000 |
+| niter | maximal number of iterations | 30 |
