@@ -52,7 +52,7 @@ The output of KSKC (`cluster_result`) is organized as a DataFrame:
 | mer100 | 2 |
 
 
-In addition, ``ks_multi.KSKC()`` supports further specifications:
+In addition, ``ks_multi.KSKC()`` supports further specifications. Users can make specifications using the attributes of ``ks_multi.KSKC()``. For example, given ``worker=ks_multi.KSKC()``, one can use ``worker.is_corrected=True`` to set wether to adopt degree correction.
 | Attribute | Description | Default | 
 | ----------- | ----------- | ----------- | 
 | is_corrected | whether to adopt degree correction | False |
