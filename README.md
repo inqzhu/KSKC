@@ -14,4 +14,35 @@ The citation is: `Yingqiu Zhu, Qiong Deng, Danyang Huang, Bingyi Jing, Bo Zhang,
 
 
 To use KSKC, please import the code `ks_multi.py`. The file `example.py` provides an example.
+```Python
+    """
+    conduct KSKC clustering
+    """
+    worker = ksm.KSKC()
+    # set the column name of objects
+    worker.obj_name = 'Merchant_id'
+    # set the column name of observation records
+    worker.rec_name = 'Transaction'
+    # set the number of clusters
+    K = 3
+    # set the input dataset
+    source = 'test_data.csv'
+    # the return is the clustering result
+    # containing 2 columns: obj_name, cluster_label
+    # each object is assigned to 1 cluster
+    cluster_result = worker.work(K, source)
+    cluster_result.to_csv('result.csv', index=False)
+```
+
+The structure of the input CSV should be, for example:
+| Merchant_id | Transaction |
+| ----------- | ----------- | 
+| mer001 | 100 | 
+| mer001 | 105 |
+| mer002 | 50 | 
+| mer002 | 45 |
+| ... | ... | 
+| mer100 | 10 |
+
+Here `obj_name` and `rec_name` are `Merchant_id` and `Transaction`, respectively.
 
